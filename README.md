@@ -1,2 +1,2 @@
-# capybara-crud-angular
-Project made for integrate API with a front end in Angular
+# capybara-crud-react
+Project made for integrate API with a front end in React
