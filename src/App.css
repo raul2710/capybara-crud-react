@@ -1,0 +1,6 @@
+.carousel {
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(255, 196, 0);
+    gap: 2em;
+}
