@@ -1,6 +1,15 @@
-.carousel {
+.App-header {
     display: flex;
-    justify-content: space-around;
-    background-color: rgb(255, 196, 0);
-    gap: 2em;
+    flex-direction: row;
+    background-color: aqua;
+    justify-content: space-between;
+}
+
+.menu-list {
+
+}
+
+main {
+    display: flex;
+    justify-content: center;
 }

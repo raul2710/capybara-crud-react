@@ -7,7 +7,7 @@ function CapybaraCard() {
             <img src="../../images/capybara-react-web.jpg" alt="" />
             <p>Una capybara muy bela</p>
 
-            <ul>
+            <ul className='capybara-list-information'>
                 <li>Weight</li>
                 <li>Age</li>
                 <li>Category</li>

@@ -1,0 +1,11 @@
+.list-header-menu {
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    list-style-type: none;
+
+}
+
+.list-header-menu>li:hover {
+    cursor: pointer;
+}

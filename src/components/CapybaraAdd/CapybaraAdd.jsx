@@ -29,18 +29,24 @@ class CapybaraAdd extends Component {
 
     render() {
         return (
-            <div>
+            <section className='add-capybara-section'>
                 <form onSubmit={this.handleSubmit} className="form-add-capybara">
                     <title>Add your own capybara</title>
                     <h2>Add your own capybara</h2>
-                    <label htmlFor="">Name: 
+
+                    <label htmlFor="">Name: </label>
                     <input type="text" about='texet' placeholder='Type the name' title='Teste' onChange={this.handleChange}/>
-                    </label>
+                    
+                    <label htmlFor="">Curiosity: </label>
                     <textarea name="" id="" placeholder="Type about your capybara"></textarea>
+
+                    <label htmlFor="">Age: </label>
+                    <input name="" id="" placeholder="Type about your capybara"></input>
+
                     <button type="submit"> Add</button>
                     <button>Cancel</button>
                 </form>
-            </div>
+            </section>
         );
     }
 }

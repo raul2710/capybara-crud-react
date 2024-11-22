@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import CapybaraCard from '../CapybaraCard/CapybaraCard';
+import './CapybaraListCard.css'
 
 class CapybaraListCard extends Component {
    
@@ -17,14 +19,10 @@ class CapybaraListCard extends Component {
     
     render() {
         return (
-            <div>
-                <ul>
-                    {
-                        this.state.persons.map(person => 
-                            <li key={person.id}> {person.name}</li>
-                        )
-                    }
-                </ul>
+            <div className='carousel'>
+                <CapybaraCard />
+                <CapybaraCard />
+                <CapybaraCard />
             </div>
         );
     }
