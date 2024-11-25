@@ -1,6 +1,6 @@
 import './CapybaraCard.css'
 
-function CapybaraCard() {
+function CapybaraCard(props) {
     return ( 
         <div className="capybara-card-div">
             <h2>Capybara name</h2>
@@ -8,9 +8,9 @@ function CapybaraCard() {
             <p>Una capybara muy bela</p>
 
             <ul className='capybara-list-information'>
-                <li>Weight</li>
-                <li>Age</li>
-                <li>Category</li>
+                <li>Weight: {props.weight}</li>
+                <li>Age: {props.age}</li>
+                <li>Category: {props.category}</li>
             </ul>
         </div>
     );

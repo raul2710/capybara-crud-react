@@ -1,7 +1,16 @@
 import './App.css';
-import FormsAddCapybara from './components/CapybaraAdd/CapybaraAdd';
+import AddAddress from './components/AddAddress/AddAddress';
+import AddCapybara from './components/AddCapybara/AddCapybara';
+import AddressList from './components/AddressList/AddressList';
+import AddressSearchById from './components/AddressSearchById/AddressSearchById';
 import CapybaraListCard from './components/CapybaraListCard/CapybaraListCard';
+import CapybaraSearchById from './components/CapybaraSearchById/CapybaraSearchById';
+import DeleteAddressById from './components/DeleteAddressById/DeleteAddressById';
+import DeleteCapybaraById from './components/DeleteCapybaraById/DeleteCapybaraById';
 import HeaderMenu from './components/HeaderMenu/HeaderMenu';
+import IntroductionApi from './components/IntroductionApi/IntroductionApi';
+import UpdateAddress from './components/UpdateAddress/UpdateAddress';
+import UpdateCapybara from './components/UpdateCapybara/UpdateCapybara';
 
 function App() {
   return (
@@ -10,16 +19,27 @@ function App() {
         <HeaderMenu />
       </header>
 
-
       <main>
         <div>
-          <FormsAddCapybara />
+          <IntroductionApi />
+
+          <AddCapybara />
           <CapybaraListCard />
+          <CapybaraSearchById />
+          <UpdateCapybara />
+          <DeleteCapybaraById />
+
+          <AddAddress />
+          <AddressList />
+          <UpdateAddress />
+          <AddressSearchById />
+          <DeleteAddressById />
+          
         </div>
       </main>
 
       <footer>
-        Footer
+        Develope by Raul
       </footer>
     </div>
   );

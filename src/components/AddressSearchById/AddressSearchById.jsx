@@ -1,9 +1,8 @@
-import './CapybaraAdd.css'
-
 import React, { Component } from 'react';
 import axios from 'axios';
+import CapybaraCard from '../CapybaraCard/CapybaraCard';
 
-class CapybaraAdd extends Component {
+class AddressSearchById extends Component {
 
     state = {
         name: ''
@@ -31,24 +30,22 @@ class CapybaraAdd extends Component {
         return (
             <section className='add-capybara-section'>
                 <form onSubmit={this.handleSubmit} className="form-add-capybara">
-                    <title>Add your own capybara</title>
-                    <h2>Add your own capybara</h2>
-
-                    <label htmlFor="">Name: </label>
-                    <input type="text" about='texet' placeholder='Type the name' title='Teste' onChange={this.handleChange}/>
+                    <title>Search your capybara by ID</title>
                     
-                    <label htmlFor="">Curiosity: </label>
-                    <textarea name="" id="" placeholder="Type about your capybara"></textarea>
+                    <h2>Search a capybara address by Id</h2>
 
-                    <label htmlFor="">Age: </label>
-                    <input name="" id="" placeholder="Type about your capybara"></input>
+                    <label htmlFor="">Id: </label>
+                    <input type="text" about='texet' placeholder='Type the name' title='Teste' onChange={this.handleChange}/>
 
-                    <button type="submit"> Add</button>
-                    <button>Cancel</button>
+                    <button type="submit"> Search </button>
+                    <button> Cancel </button>
+
+                    <CapybaraCard />
+
                 </form>
             </section>
         );
     }
 }
 
-export default CapybaraAdd;
+export default AddressSearchById;

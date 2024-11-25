@@ -1,5 +1,7 @@
 .carousel {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-content: space-between;
     gap: 1%;
+    padding: 50px;
 }

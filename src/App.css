@@ -5,11 +5,12 @@
     justify-content: space-between;
 }
 
-.menu-list {
-
-}
-
 main {
     display: flex;
     justify-content: center;
+}
+
+footer {
+    /* display: flex;
+    justify-content: center; */
 }

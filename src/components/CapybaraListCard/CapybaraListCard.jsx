@@ -19,10 +19,14 @@ class CapybaraListCard extends Component {
     
     render() {
         return (
-            <div className='carousel'>
-                <CapybaraCard />
-                <CapybaraCard />
-                <CapybaraCard />
+            <div>
+                <h2>All capybaras</h2>
+                
+                <div className='carousel'>
+                    <CapybaraCard />
+                    <CapybaraCard />
+                    <CapybaraCard />
+                </div>
             </div>
         );
     }
