@@ -1,97 +1,19 @@
 import "./AddCapybara.css";
 
+import Carousel from "react-multi-carousel";
 import React, { useState } from "react";
 import { createCapybara } from "../../services/api";
-
-// function AddCapybara() {
-
-//     // const [post, setPost] = useState(
-//     //     name,
-//     //     age,
-
-//     // );
-
-//     // React.useEffect(() => {
-//     //   axios.post(baseURL, {
-
-//     //   }).then((response) => {
-//     //     setPost(response.data);
-//     //   });
-//     // }, []);
-
-//     // if (!post) return null;
-//     function saveCapybara() {
-//         axios.post(baseURL, {
-//             "name": "string",
-//             "age": 0,
-//             "weight": 0,
-//             "color": "string",
-//             "curiosity": "string",
-//             "classification": "Rare",
-//             "address": {
-//                 "city": "string",
-//                 "state": "string",
-//                 "lake_name": "string"
-//             }
-//         }).then((response) => {
-//             setPost(response.data);
-//         });
-//     }
-
-//     return (
-//         <section className='add-capybara-section'>
-//             <form className="form-add-capybara">
-//                 <title>Add your own capybara</title>
-//                 <h2>Add your own capybara</h2>
-
-//                 <label htmlFor="">Name: </label>
-//                 <input type="text" about='texet' placeholder='Type the name' title='Teste'/>
-
-//                 <label htmlFor="">Age: </label>
-//                 <input name="" id="" placeholder="Type about your capybara"></input>
-
-//                 <label htmlFor="">Weight: </label>
-//                 <input name="" id="" placeholder="Type about your capybara"></input>
-
-//                 <label htmlFor="">Color: </label>
-//                 <input name="" id="" placeholder="Type about your capybara"></input>
-
-//                 <label htmlFor="">Curiosity: </label>
-//                 <textarea name="" id="" placeholder="Type about your capybara"></textarea>
-
-//                 <label htmlFor="">Classification: </label>
-//                 <input name="" id="" placeholder="Type about your capybara"></input>
-
-//                 <h2>Address</h2>
-
-//                 <label htmlFor="">City: </label>
-//                 <input name="" id="" placeholder="Type about your capybara"></input>
-
-//                 <label htmlFor="">State: </label>
-//                 <input name="" id="" placeholder="Type about your capybara"></input>
-
-//                 <label htmlFor="">Lake name: </label>
-//                 <input name="" id="" placeholder="Type about your capybara"></input>
-
-//                 <button type="submit" onClick={saveCapybara}> Add</button>
-//                 <button>Cancel</button>
-//             </form>
-//         </section>
-//     );
-// }
-
-// export default AddCapybara;
 
 const AddCapybara = () => {
   const [formData, setFormData] = useState({
     name: "",
-    age: 0,
-    weight: 0,
+    age: "",
+    weight: "",
     color: "",
     curiosity: "",
     classification: "Rare",
     address: {
-      city: "",
+      city: "", 
       state: "",
       lake_name: "",
     },
@@ -101,47 +23,54 @@ const AddCapybara = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value }); // Atualiza os valores do formulário dinamicamente
+    const keys = name.split("."); // Para lidar com `address.street`
+
+    if (keys.length === 2) {
+      // Atualiza um campo do endereço
+      setFormData({
+        ...formData,
+        address: {
+          ...formData.address,
+          [keys[1]]: value,
+        },
+      });
+    } else {
+      // Atualiza campos da capivara
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const {
-      name,
-      age,
-      weight,
-      color,
-      curiosity,
-      classification,
-      address: { city, state, lake_name },
-    } = formData;
 
-    if (!city || !state || !lake_name) {
+    // Verificar se todos os campos estão preenchidos
+    if (
+      !formData.name ||
+      !formData.age ||
+      !formData.color ||
+      !formData.weight ||
+      !formData.curiosity ||
+      !formData.classification ||
+      !formData.address.city ||
+      !formData.address.state ||
+      !formData.address.lake_name
+    ) {
       setMessage("Por favor, preencha todos os campos.");
       return;
     }
 
     try {
-      const newCapybara = {
-        name,
-        age,
-        weight,
-        color,
-        curiosity,
-        classification,
-        address: {
-          city,
-          state,
-          lake_name,
-        },
-      };
-      const response = await createCapybara(newCapybara);
+      const response = await createCapybara({
+        ...formData,
+        age: parseInt(formData.age),
+        weight: parseFloat(formData.weight),
+      });
       setMessage(response.message);
       setFormData({
         name: "",
-        age: 0,
-        weight: 0,
+        age: "",
         color: "",
+        weight: "",
         curiosity: "",
         classification: "",
         address: {
@@ -151,22 +80,28 @@ const AddCapybara = () => {
         },
       }); // Limpa o formulário
     } catch (err) {
-      setMessage(
-        "Erro ao adicionar a capivara. Verifique os dados e tente novamente."
-      );
+      setMessage("Erro ao adicionar a capivara. Tente novamente.");
     }
   };
 
   return (
     <div>
-      <h1>Adicionar Capivara</h1>
+      <h2>Add a Capybara</h2>
       <form onSubmit={handleSubmit}>
-        <title>Add your own capybara</title>
-        <h2>Add your own     capybara</h2>
+        <div>
+          <label>Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Digite o ID"
+          />
+        </div>
         <div>
           <label>Age:</label>
           <input
-            type="text"
+            type="number"
             name="age"
             value={formData.age}
             onChange={handleChange}
@@ -174,9 +109,9 @@ const AddCapybara = () => {
           />
         </div>
         <div>
-          <label>Nome:</label>
+          <label>Weight:</label>
           <input
-            type="text"
+            type="number"
             name="weight"
             value={formData.weight}
             onChange={handleChange}
@@ -184,7 +119,7 @@ const AddCapybara = () => {
           />
         </div>
         <div>
-          <label>Idade:</label>
+          <label>Color:</label>
           <input
             type="text"
             name="color"
@@ -194,7 +129,7 @@ const AddCapybara = () => {
           />
         </div>
         <div>
-          <label>Idade:</label>
+          <label>Curiosity:</label>
           <input
             type="text"
             name="curiosity"
@@ -204,46 +139,44 @@ const AddCapybara = () => {
           />
         </div>
         <div>
-          <label>Idade:</label>
-          <input
-            type="text"
-            name="classification"
-            value={formData.classification}
-            onChange={handleChange}
-            placeholder="Type the lake name"
-          />
+          <label>Classification:</label>
+          <select name="classification" id="" value={formData.classification} onChange={handleChange}>
+            <option value="Rare">Rare</option>
+            <option value="Comum">Comum</option>
+          </select>
         </div>
+        <h3>Capybara Address</h3>
         <div>
-          <label>Idade:</label>
+          <label>City:</label>
           <input
             type="text"
-            name="address"
+            name="address.city"
             value={formData.address.city}
             onChange={handleChange}
             placeholder="Type the lake name"
           />
         </div>
         <div>
-          <label>Idade:</label>
+          <label>State:</label>
           <input
             type="text"
-            name="address"
+            name="address.state"
             value={formData.address.state}
             onChange={handleChange}
             placeholder="Type the lake name"
           />
         </div>
         <div>
-          <label>lake_name:</label>
+          <label>Lake Name:</label>
           <input
             type="text"
-            name="address"
+            name="address.lake_name"
             value={formData.address.lake_name}
             onChange={handleChange}
             placeholder="Type the lake name"
           />
         </div>
-        <button type="submit">Adicionar</button>
+        <button type="submit">Add</button>
       </form>
 
       {message && <p>{message}</p>}

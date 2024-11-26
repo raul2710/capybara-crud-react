@@ -10,7 +10,7 @@ const AddressSearchById = () => {
   const handleSearch = async (e) => {
     e.preventDefault();
     if (!id) {
-      setError("Por favor, insira um ID.");
+      setError("Please, type an valid id.");
       return;
     }
 
@@ -20,16 +20,16 @@ const AddressSearchById = () => {
       setCapybara(result); // Atualiza o estado com os dados da capivara
     } catch (err) {
       setCapybara(null);
-      setError("Capivara não encontrada.");
+      setError("Capybara not found.");
     }
   };
 
   return (
     <div>
-      <h1>Search Address By Id</h1>
+      <h1>Search Address</h1>
       <form onSubmit={handleSearch}>
         <div>
-          <label>ID:</label>
+          <label>Address Id:</label>
           <input
             type="number"
             value={id}
@@ -44,7 +44,7 @@ const AddressSearchById = () => {
 
       {capybara && (
         <div>
-          <h2>Capivara Encontrada:</h2>
+          <h2>Address Found:</h2>
             <CapybaraCard 
                 name={capybara.city}
                 age={capybara.state}

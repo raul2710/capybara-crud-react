@@ -24,9 +24,10 @@ const DeleteCapybaraById = () => {
 
     return (
         <div>
-            <h1>Excluir Capivara</h1>
+            <h2>Delete Capybara</h2>
+            <label>Capybara Id: </label>
             <input
-                type="text"
+                type="number"
                 placeholder="Digite o ID"
                 value={id}
                 onChange={(e) => setId(e.target.value)} // Atualiza o estado com o valor do input

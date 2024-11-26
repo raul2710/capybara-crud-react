@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import CapybaraCard from "../CapybaraCard/CapybaraCard";
 import api from '../../services/api';
+import AddressCard from '../AddressCard/AddressCard';
 
 const AddressList = () => {
-    const [capybaras, setCapybaras] = useState([]);
+    const [addresses, setAddresses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchCapybaras = async () => {
             try {
-            const response = await api.get('/capybaras'); // Chama a rota da API
-            setCapybaras(response.data); // Salva os dados no estado
+                const response = await api.get('/addresses'); // Chama a rota da API
+                setAddresses(response.data); // Salva os dados no estado
             } catch (err) {
-            setError(err.message); // Captura qualquer erro
+                setError(err.message); // Captura qualquer erro
             } finally {
-            setLoading(false); // Finaliza o carregamento
+                setLoading(false); // Finaliza o carregamento
             }
         };
 
@@ -27,15 +27,14 @@ const AddressList = () => {
 
     return (
         <div className='carousel'>
-        <h1>Capybaras</h1>
-            {capybaras.map((capybara) => (
-                <CapybaraCard 
-                    name={capybara.name}
-                    age={capybara.age}
-                    weight={capybara.weight}
-                    color={capybara.color}
-                    curiosity={capybara.curiosity}
-                    classification={capybara.classification}
+        <h2>All Addresses</h2>
+            {addresses.map((address) => (
+                <AddressCard
+                    id={address.id}
+                    city={address.city}
+                    state={address.state}
+                    lake_name={address.lake_name}
+                    capybara_id={address.capybara_id}
                 />
             ))}
         </div>

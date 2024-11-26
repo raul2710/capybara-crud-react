@@ -56,7 +56,7 @@ export const getAddressById = async (id) => {
 
 export const updateCapybara = async (id, data) => {
   try {
-    const response = await api.put(`/capybaras/${id}`, data);
+    const response = await api.put(`/capybara/${id}`, data);
     return response.data;
   } catch (error) {
     console.error('Erro ao atualizar capivara:', error);
@@ -66,7 +66,7 @@ export const updateCapybara = async (id, data) => {
 
 export const updateAddress = async (id, data) => {
   try {
-    const response = await api.put(`/capybaras/${id}`, data);
+    const response = await api.put(`/address/${id}`, data);
     return response.data;
   } catch (error) {
     console.error('Erro ao atualizar capivara:', error);

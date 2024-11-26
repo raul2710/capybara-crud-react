@@ -1,16 +1,15 @@
-import './CapybaraCard.css'
+import './AddressCard.css'
 
-function CapybaraCard(props) {
+function AddressCard(props) {
     return ( 
         <div className="capybara-card-div">
-            <h2>{props.name}</h2>
-            <p>{props.curiosity}</p>
+            <h2>Address Id: {props.id}</h2>
 
             <ul className='capybara-list-information'>
-                <li>Age: {props.age}</li>
-                <li>Weight: {props.weight}</li>
-                <li>Color: {props.color}</li>
-                <li>Classification: {props.classification}</li>
+                <li>City: {props.city}</li>
+                <li>State: {props.state}</li>
+                <li>Lake Name: {props.lake_name}</li>
+                <li>Capybara Id: {props.capybara_id}</li>
             </ul>
             {/* <h3>Address</h3>
             <ul className='capybara-list-information'>
@@ -22,4 +21,4 @@ function CapybaraCard(props) {
     );
 }
 
-export default CapybaraCard;
+export default AddressCard;

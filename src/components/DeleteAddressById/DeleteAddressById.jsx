@@ -33,9 +33,10 @@ const DeleteAddressById = () => {
 
     return (
         <div>
-            <h1>Delete Address By Id</h1>
+            <h2>Delete Address</h2>
+            <label>Address Id: </label>
             <input
-                type="text"
+                type="number"
                 placeholder="Digite o ID"
                 value={id}
                 onChange={(e) => setId(e.target.value)} // Atualiza o estado com o valor do input

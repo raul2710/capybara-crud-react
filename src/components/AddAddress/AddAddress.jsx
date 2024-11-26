@@ -45,10 +45,11 @@ const AddAddress = () => {
 
   return (
     <div>
-      <h1>Adicionar Capivara</h1>
+      <h2>Add an Address</h2>
+      <p>It's function only for capybaras that don't have address</p>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>ID:</label>
+          <label>Capybara Id:</label>
           <input
             type="number"
             name="id"
@@ -68,7 +69,7 @@ const AddAddress = () => {
           />
         </div>
         <div>
-          <label>Nome:</label>
+          <label>State:</label>
           <input
             type="text"
             name="state"
@@ -78,7 +79,7 @@ const AddAddress = () => {
           />
         </div>
             <div>
-            <label>Idade:</label>
+            <label>Lake Name:</label>
             <input
                 type="text"
                 name="lake_name"
@@ -87,7 +88,7 @@ const AddAddress = () => {
                 placeholder="Type the lake name"
             />
             </div>
-        <button type="submit">Adicionar</button>
+        <button type="submit">Add</button>
       </form>
       {message && <p>{message}</p>}
     </div>

@@ -26,10 +26,10 @@ const CapybaraSearchById = () => {
 
   return (
     <div>
-      <h1>Pesquisar Capivara</h1>
+      <h2>Search Capybara</h2>
       <form onSubmit={handleSearch}>
         <div>
-          <label>ID:</label>
+          <label>Capybara Id:</label>
           <input
             type="number"
             value={id}
@@ -37,14 +37,14 @@ const CapybaraSearchById = () => {
             placeholder="Digite o ID"
           />
         </div>
-        <button type="submit">Pesquisar</button>
+        <button type="submit">Search</button>
       </form>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {capybara && (
         <div>
-          <h2>Capivara Encontrada:</h2>
+          <h3>Capybara Found:</h3>
             <CapybaraCard 
                 name={capybara.name}
                 age={capybara.age}

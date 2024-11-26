@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { updateAddress } from '../../services/api';
+import React, { useState } from "react";
+import { updateAddress } from "../../services/api";
 
 const UpdateAddress = () => {
-  const [id, setId] = useState('');
+  const [id, setId] = useState("");
   const [formData, setFormData] = useState({
-    name: '',
-    age: '',
-    color: '',
-    weight: '',
+    city: "",
+    state: "",
+    lake_name: "",
   });
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,31 +17,32 @@ const UpdateAddress = () => {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    if (!id || !formData.name || !formData.age || !formData.color || !formData.weight) {
-      setMessage('Por favor, preencha todos os campos.');
+    if (
+      !id ||
+      !formData.city ||
+      !formData.state ||
+      !formData.lake_name
+    ) {
+      setMessage("Por favor, preencha todos os campos.");
       return;
     }
 
     try {
-      const updatedCapybara = {
-        name: formData.name,
-        age: parseInt(formData.age),
-        color: formData.color,
-        weight: parseFloat(formData.weight),
-      };
-      const response = await updateAddress(id, updatedCapybara);
+      const response = await updateAddress(id,{...formData});
       setMessage(response.message);
     } catch (err) {
-      setMessage('Erro ao atualizar a capivara. Verifique os dados e tente novamente.');
+      setMessage(
+        "Erro ao atualizar a capivara. Verifique os dados e tente novamente."
+      );
     }
   };
 
   return (
     <div>
-      <h1>Atualizar Capivara</h1>
+      <h2>Update Address</h2>
       <form onSubmit={handleUpdate}>
         <div>
-          <label>ID:</label>
+          <label>Address Id:</label>
           <input
             type="number"
             value={id}
@@ -51,47 +51,36 @@ const UpdateAddress = () => {
           />
         </div>
         <div>
-          <label>Nome:</label>
+          <label>City:</label>
           <input
             type="text"
-            name="name"
-            value={formData.name}
+            name="city"
+            value={formData.city}
             onChange={handleChange}
             placeholder="Digite o nome"
           />
         </div>
         <div>
-          <label>Idade:</label>
+          <label>State:</label>
           <input
-            type="number"
-            name="age"
-            value={formData.age}
+            type="text"
+            name="state"
+            value={formData.state}
             onChange={handleChange}
             placeholder="Digite a idade"
           />
         </div>
         <div>
-          <label>Cor:</label>
+          <label>Lake Name:</label>
           <input
             type="text"
-            name="color"
-            value={formData.color}
+            name="lake_name"
+            value={formData.lake_name}
             onChange={handleChange}
             placeholder="Digite a cor"
           />
         </div>
-        <div>
-          <label>Peso:</label>
-          <input
-            type="number"
-            step="0.1"
-            name="weight"
-            value={formData.weight}
-            onChange={handleChange}
-            placeholder="Digite o peso"
-          />
-        </div>
-        <button type="submit">Atualizar</button>
+        <button type="submit">Update</button>
       </form>
       {message && <p>{message}</p>}
     </div>
