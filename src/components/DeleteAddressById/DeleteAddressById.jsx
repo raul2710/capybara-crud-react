@@ -1,48 +1,49 @@
+import React, { useState } from 'react';
+import api from '../../services/api'; // Importa a função delete
 
-import React, { Component } from 'react';
-import axios from 'axios';
+const DeleteAddressById = () => {
+    const [id, setId] = useState(''); // Estado para armazenar o ID
+    const [message, setMessage] = useState(''); // Mensagem de feedback para o usuário
 
-class DeleteAddressById extends Component {
-    state = {  } 
+    const deleteCapybara = async (id) => {
+        try {
+            await api.delete(`/address/${id}`);
+        } catch (error) {
+            console.error('Erro ao deletar a capivara:', error);
+            throw error;
+        }
+    };
 
-    handleChange = event => {
-        this.setState({ name: event.target.value });
-    }
+    const handleDelete = async () => {
+        if (!id) {
+        setMessage('Por favor, insira um ID.');
+        return;
+        }
 
-    handleSubmit = event => {
-        event.preventDefault();
+        if (window.confirm(`Tem certeza que deseja excluir a capivara com ID ${id}?`)) {
+        try {
+            await deleteCapybara(id); // Chama a função de exclusão
+            setMessage(`Capivara com ID ${id} foi excluída com sucesso.`);
+            setId(''); // Limpa o campo de ID
+        } catch (err) {
+            setMessage(`Erro ao excluir a capivara: ${err.message}`);
+        }
+        }
+    };
 
-        const user = {
-            name: this.state.name
-        };
+    return (
+        <div>
+            <h1>Delete Address By Id</h1>
+            <input
+                type="text"
+                placeholder="Digite o ID"
+                value={id}
+                onChange={(e) => setId(e.target.value)} // Atualiza o estado com o valor do input
+            />
+            <button onClick={handleDelete}>Delete</button>
+            {message && <p>{message}</p>} {/* Exibe mensagens de feedback */}
+        </div>
+    );
+};
 
-        axios.post(`https://jsonplaceholder.typicode.com/users`, { user })
-            .then(res => {
-            console.log(res);
-            console.log(res.data);
-        })
-    }
-
-    render() { 
-        return (
-            <section className='add-capybara-section'>
-                <form onSubmit={this.handleSubmit} className="form-add-capybara">
-                    <title>Delete a capybara address by Id</title>
-
-                    <h2>Delete a capybara address by Id</h2>
-
-                    <label htmlFor="">Id: </label>
-                    <input type="text" about='texet' placeholder='Type the name' title='Teste' onChange={this.handleChange}/>
-
-                    <button type="submit"> Delete</button>
-                    <button>Cancel</button>
-                </form>
-
-                <p>The capybara was delete</p>
-            </section>
-
-        );
-    }
-}
- 
 export default DeleteAddressById;

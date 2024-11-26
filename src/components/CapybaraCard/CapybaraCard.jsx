@@ -8,9 +8,11 @@ function CapybaraCard(props) {
             <p>Una capybara muy bela</p>
 
             <ul className='capybara-list-information'>
-                <li>Weight: {props.weight}</li>
                 <li>Age: {props.age}</li>
-                <li>Category: {props.category}</li>
+                <li>Weight: {props.weight}</li>
+                <li>Color: {props.color}</li>
+                <li>Curiosity: {props.curiosity}</li>
+                <li>Classification: {props.classification}</li>
             </ul>
         </div>
     );

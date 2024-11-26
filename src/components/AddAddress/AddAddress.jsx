@@ -1,55 +1,97 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import { createAddress } from "../../services/api";
 
-class AddAddress extends Component {
+const AddAddress = () => {
+  const [formData, setFormData] = useState({
+    city: "",
+    state: "",
+    lake_name: "",
+  });
+  const [capybara_id, setCapybaraId] = useState(0);
 
-    state = {
-        name: ''
+  const [message, setMessage] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value }); // Atualiza os valores do formulário dinamicamente
+    setCapybaraId(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { city, state, lake_name } = formData;
+
+    if (!city || !state || !lake_name) {
+      setMessage("Por favor, preencha todos os campos.");
+      return;
     }
 
-    handleChange = event => {
-        this.setState({ name: event.target.value });
+    try {
+      const newAddress = {
+        city,
+        state,
+        lake_name,
+      };
+      const response = await createAddress(capybara_id, newAddress);
+      setMessage(response.message);
+      setFormData({ city: "", state: "", lake_name: "" }); // Limpa o formulário
+      setCapybaraId(null);
+    } catch (err) {
+      setMessage(
+        "Erro ao adicionar a capivara. Verifique os dados e tente novamente."
+      );
     }
+  };
 
-    handleSubmit = event => {
-    event.preventDefault();
-
-        const user = {
-            name: this.state.name
-        };
-
-        axios.post(`https://jsonplaceholder.typicode.com/users`, { user })
-            .then(res => {
-            console.log(res);
-            console.log(res.data);
-        })
-    }
-
-    render() {
-        return (
-            <section className='add-capybara-section'>
-                <form onSubmit={this.handleSubmit} className="form-add-capybara">
-                    <title>Add an address</title>
-                    <h2>Add an address</h2>
-
-                    <label htmlFor="">Capybara Id: </label>
-                    <input name="" id="" placeholder="Type about your capybara"></input>
-
-                    <label htmlFor="">Street: </label>
-                    <input type="text" about='texet' placeholder='Type the name' title='Teste' onChange={this.handleChange}/>
-                    
-                    <label htmlFor="">Curiosity: </label>
-                    <textarea name="" id="" placeholder="Type about your capybara"></textarea>
-
-                    <label htmlFor="">Lake name: </label>
-                    <input name="" id="" placeholder="Type about your capybara"></input>
-
-                    <button type="submit">Add</button>
-                    <button>Cancel</button>
-                </form>
-            </section>
-        );
-    }
-}
+  return (
+    <div>
+      <h1>Adicionar Capivara</h1>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>ID:</label>
+          <input
+            type="number"
+            name="id"
+            value={capybara_id}
+            onChange={handleChange}
+            placeholder="Digite o ID"
+          />
+        </div>
+        <div>
+          <label>City:</label>
+          <input
+            type="text"
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+            placeholder="Digite o ID"
+          />
+        </div>
+        <div>
+          <label>Nome:</label>
+          <input
+            type="text"
+            name="state"
+            value={formData.state}
+            onChange={handleChange}
+            placeholder="Digite o nome"
+          />
+        </div>
+            <div>
+            <label>Idade:</label>
+            <input
+                type="text"
+                name="lake_name"
+                value={formData.lake_name}
+                onChange={handleChange}
+                placeholder="Type the lake name"
+            />
+            </div>
+        <button type="submit">Adicionar</button>
+      </form>
+      {message && <p>{message}</p>}
+    </div>
+  );
+};
 
 export default AddAddress;

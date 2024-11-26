@@ -1,51 +1,60 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import CapybaraCard from '../CapybaraCard/CapybaraCard';
+import React, { useState } from "react";
+import { getAddressById } from "../../services/api";
+import CapybaraCard from "../CapybaraCard/CapybaraCard";
 
-class AddressSearchById extends Component {
+const AddressSearchById = () => {
+  const [id, setId] = useState("");
+  const [capybara, setCapybara] = useState(null);
+  const [error, setError] = useState("");
 
-    state = {
-        name: ''
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    if (!id) {
+      setError("Por favor, insira um ID.");
+      return;
     }
 
-    handleChange = event => {
-        this.setState({ name: event.target.value });
+    try {
+      setError(""); // Limpa mensagens de erro
+      const result = await getAddressById(id); // Busca a capivara pelo ID
+      setCapybara(result); // Atualiza o estado com os dados da capivara
+    } catch (err) {
+      setCapybara(null);
+      setError("Capivara não encontrada.");
     }
+  };
 
-    handleSubmit = event => {
-    event.preventDefault();
+  return (
+    <div>
+      <h1>Search Address By Id</h1>
+      <form onSubmit={handleSearch}>
+        <div>
+          <label>ID:</label>
+          <input
+            type="number"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+            placeholder="Digite o ID"
+          />
+        </div>
+        <button type="submit">Pesquisar</button>
+      </form>
 
-        const user = {
-            name: this.state.name
-        };
+      {error && <p style={{ color: "red" }}>{error}</p>}
 
-        axios.post(`https://jsonplaceholder.typicode.com/users`, { user })
-            .then(res => {
-            console.log(res);
-            console.log(res.data);
-        })
-    }
-
-    render() {
-        return (
-            <section className='add-capybara-section'>
-                <form onSubmit={this.handleSubmit} className="form-add-capybara">
-                    <title>Search your capybara by ID</title>
-                    
-                    <h2>Search a capybara address by Id</h2>
-
-                    <label htmlFor="">Id: </label>
-                    <input type="text" about='texet' placeholder='Type the name' title='Teste' onChange={this.handleChange}/>
-
-                    <button type="submit"> Search </button>
-                    <button> Cancel </button>
-
-                    <CapybaraCard />
-
-                </form>
-            </section>
-        );
-    }
-}
+      {capybara && (
+        <div>
+          <h2>Capivara Encontrada:</h2>
+            <CapybaraCard 
+                name={capybara.city}
+                age={capybara.state}
+                weight={capybara.lake_name}
+                
+            />
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default AddressSearchById;
