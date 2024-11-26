@@ -1,5 +1,3 @@
-import './CapybaraCard.css'
-
 function CapybaraCard(props) {
     return ( 
         <div className="capybara-card-div">

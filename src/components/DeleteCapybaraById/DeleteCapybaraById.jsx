@@ -25,14 +25,14 @@ const DeleteCapybaraById = () => {
     return (
         <div>
             <h2>Delete Capybara</h2>
-            <label>Capybara Id: </label>
+            <label>Capybara Id:</label>
             <input
                 type="number"
                 placeholder="Digite o ID"
                 value={id}
                 onChange={(e) => setId(e.target.value)} // Atualiza o estado com o valor do input
             />
-            <button onClick={handleDelete}>Delete</button>
+            <button className='delete' onClick={handleDelete}>Delete</button>
             {message && <p>{message}</p>} {/* Exibe mensagens de feedback */}
         </div>
     );

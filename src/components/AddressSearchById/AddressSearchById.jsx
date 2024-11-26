@@ -26,31 +26,28 @@ const AddressSearchById = () => {
 
   return (
     <div>
-      <h1>Search Address</h1>
-      <form onSubmit={handleSearch}>
-        <div>
-          <label>Address Id:</label>
-          <input
-            type="number"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
-            placeholder="Digite o ID"
-          />
-        </div>
-        <button type="submit">Pesquisar</button>
-      </form>
+      <h2>Search Address</h2>
+      <div>
+        <label>Address Id:</label>
+        <input
+          type="number"
+          value={id}
+          onChange={(e) => setId(e.target.value)}
+          placeholder="Digite o ID"
+        />
+        <button onClick={handleSearch}>Pesquisar</button>
+      </div>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {capybara && (
         <div>
           <h2>Address Found:</h2>
-            <CapybaraCard 
-                name={capybara.city}
-                age={capybara.state}
-                weight={capybara.lake_name}
-                
-            />
+          <CapybaraCard
+            name={capybara.city}
+            age={capybara.state}
+            weight={capybara.lake_name}
+          />
         </div>
       )}
     </div>

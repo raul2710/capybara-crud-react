@@ -13,4 +13,57 @@ main {
 footer {
     /* display: flex;
     justify-content: center; */
+    background-color: gray;
+    padding: 20px;
 }
+
+input, select {
+    margin: 5px;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    width: 50%;
+}
+
+button {
+    padding: 10px;
+    background-color: rgb(255, 81, 0);
+    align-self: center;
+    width: 10%;
+    border-radius: 5px;
+    border: none;
+}
+
+#sectionAddCapybara {
+    align-self: center;
+    height: 100vh;
+}
+#sectionDeleteCapybara {
+    align-self: center;
+    height: 100vh;
+}
+#sectionUpdateCapybara {
+    align-self: center;
+    height: 100vh;
+}
+#sectionShowCapybara {
+    align-self: center;
+    height: 100vh;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    width: 100%;
+    position: relative; /* Posição inicial antes do "sticky" */
+    transition: all 0.3s ease-in-out;
+  }
+  
+  header.sticky {
+    position: fixed; /* Fixa o header no topo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }

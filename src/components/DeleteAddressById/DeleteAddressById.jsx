@@ -34,7 +34,7 @@ const DeleteAddressById = () => {
     return (
         <div>
             <h2>Delete Address</h2>
-            <label>Address Id: </label>
+            <label>Address Id:</label>
             <input
                 type="number"
                 placeholder="Digite o ID"

@@ -1,6 +1,3 @@
-import "./AddCapybara.css";
-
-import Carousel from "react-multi-carousel";
 import React, { useState } from "react";
 import { createCapybara } from "../../services/api";
 
@@ -85,7 +82,7 @@ const AddCapybara = () => {
   };
 
   return (
-    <div>
+    <section id="sectionAddCapybara">
       <h2>Add a Capybara</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -180,7 +177,7 @@ const AddCapybara = () => {
       </form>
 
       {message && <p>{message}</p>}
-    </div>
+    </section>
   );
 };
 

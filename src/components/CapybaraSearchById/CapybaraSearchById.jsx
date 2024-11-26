@@ -27,32 +27,30 @@ const CapybaraSearchById = () => {
   return (
     <div>
       <h2>Search Capybara</h2>
-      <form onSubmit={handleSearch}>
-        <div>
-          <label>Capybara Id:</label>
-          <input
-            type="number"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
-            placeholder="Digite o ID"
-          />
-        </div>
-        <button type="submit">Search</button>
-      </form>
+      <div>
+        <label>Capybara Id:</label>
+        <input
+          type="number"
+          value={id}
+          onChange={(e) => setId(e.target.value)}
+          placeholder="Digite o ID"
+        />
+        <button onClick={handleSearch}>Search</button>
+      </div>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {capybara && (
         <div>
           <h3>Capybara Found:</h3>
-            <CapybaraCard 
-                name={capybara.name}
-                age={capybara.age}
-                weight={capybara.weight}
-                color={capybara.color}
-                curiosity={capybara.curiosity}
-                classification={capybara.classification}
-            />
+          <CapybaraCard
+            name={capybara.name}
+            age={capybara.age}
+            weight={capybara.weight}
+            color={capybara.color}
+            curiosity={capybara.curiosity}
+            classification={capybara.classification}
+          />
         </div>
       )}
     </div>
