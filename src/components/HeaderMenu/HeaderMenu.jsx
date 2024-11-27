@@ -13,8 +13,9 @@ function HeaderMenu() {
     <div>
       <ul className="list-header-menu">
         <li onClick={() => scrollToSection('sectionAddCapybara')}>Add</li>
-        <li onClick={() => scrollToSection('sectionShowCapybara')}>Show</li>
+        <li onClick={() => scrollToSection('sectionShowCapybaras')}>Show</li>
         <li onClick={() => scrollToSection('sectionUpdateCapybara')}>Update</li>
+        <li onClick={() => scrollToSection('sectionSearchCapybara')}>Search</li>
         <li onClick={() => scrollToSection('sectionDeleteCapybara')}>Delete</li>
       </ul>
     </div>

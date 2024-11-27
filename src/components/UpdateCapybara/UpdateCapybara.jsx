@@ -54,7 +54,7 @@ const UpdateCapybara = () => {
       !formData.address.state ||
       !formData.address.lake_name
     ) {
-      setMessage("Por favor, preencha todos os campos.");
+      setMessage("Please fill all fields.");
       return;
     }
 
@@ -79,14 +79,14 @@ const UpdateCapybara = () => {
         },
       }); // Limpa o formulário
     } catch (err) {
-      setMessage("Erro ao adicionar a capivara. Tente novamente.");
+      setMessage("Error to try update capybara. Try again.");
     }
   };
 
   return (
-    <div>
+    <section id="sectionUpdateCapybara">
       <h2>Update a Capybara</h2>
-      <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
         <div>
           <label>Id:</label>
           <input
@@ -94,7 +94,17 @@ const UpdateCapybara = () => {
             name="id"
             value={id}
             onChange={(e) => setId(e.target.value)}
-            placeholder="Digite o ID"
+            placeholder="Type the capId"
+          />
+        </div>
+        <div>
+          <label>Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Type a capyname"
           />
         </div>
         <div>
@@ -104,7 +114,7 @@ const UpdateCapybara = () => {
             name="age"
             value={formData.age}
             onChange={handleChange}
-            placeholder="Digite o ID"
+            placeholder="Type a capage"
           />
         </div>
         <div>
@@ -114,7 +124,7 @@ const UpdateCapybara = () => {
             name="weight"
             value={formData.weight}
             onChange={handleChange}
-            placeholder="Digite o nome"
+            placeholder="Type the capyname"
           />
         </div>
         <div>
@@ -124,7 +134,7 @@ const UpdateCapybara = () => {
             name="color"
             value={formData.color}
             onChange={handleChange}
-            placeholder="Type the lake name"
+            placeholder="Type the color"
           />
         </div>
         <div>
@@ -134,7 +144,7 @@ const UpdateCapybara = () => {
             name="curiosity"
             value={formData.curiosity}
             onChange={handleChange}
-            placeholder="Type the lake name"
+            placeholder="Type the capy curiosity"
           />
         </div>
         <div>
@@ -143,13 +153,6 @@ const UpdateCapybara = () => {
             <option value="Rare">Rare</option>
             <option value="Comum">Comum</option>
           </select>
-          {/* <input
-            type="text"
-            name="classification"
-            value={formData.classification}
-            onChange={handleChange}
-            placeholder="Type the lake name"
-          /> */}
         </div>
         <h3>Capybara Address</h3>
         <div>
@@ -159,7 +162,7 @@ const UpdateCapybara = () => {
             name="address.city"
             value={formData.address.city}
             onChange={handleChange}
-            placeholder="Type the lake name"
+            placeholder="Type the city"
           />
         </div>
         <div>
@@ -169,7 +172,7 @@ const UpdateCapybara = () => {
             name="address.state"
             value={formData.address.state}
             onChange={handleChange}
-            placeholder="Type the lake name"
+            placeholder="Type the state"
           />
         </div>
         <div>
@@ -186,7 +189,7 @@ const UpdateCapybara = () => {
       </form>
 
       {message && <p>{message}</p>}
-    </div>
+    </section>
   );
 };
 

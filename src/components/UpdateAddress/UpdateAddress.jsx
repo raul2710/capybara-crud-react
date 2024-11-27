@@ -17,28 +17,21 @@ const UpdateAddress = () => {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    if (
-      !id ||
-      !formData.city ||
-      !formData.state ||
-      !formData.lake_name
-    ) {
-      setMessage("Por favor, preencha todos os campos.");
+    if (!id || !formData.city || !formData.state || !formData.lake_name) {
+      setMessage("Please fill all fields.");
       return;
     }
 
     try {
-      const response = await updateAddress(id,{...formData});
+      const response = await updateAddress(id, { ...formData });
       setMessage(response.message);
     } catch (err) {
-      setMessage(
-        "Erro ao atualizar a capivara. Verifique os dados e tente novamente."
-      );
+      setMessage("Error to try update address. Try again.");
     }
   };
 
   return (
-    <div>
+    <section id="sectionUpdateAddress">
       <h2>Update Address</h2>
       <form onSubmit={handleUpdate}>
         <div>
@@ -57,7 +50,7 @@ const UpdateAddress = () => {
             name="city"
             value={formData.city}
             onChange={handleChange}
-            placeholder="Digite o nome"
+            placeholder="Type the city"
           />
         </div>
         <div>
@@ -67,7 +60,7 @@ const UpdateAddress = () => {
             name="state"
             value={formData.state}
             onChange={handleChange}
-            placeholder="Digite a idade"
+            placeholder="Type the state"
           />
         </div>
         <div>
@@ -77,13 +70,13 @@ const UpdateAddress = () => {
             name="lake_name"
             value={formData.lake_name}
             onChange={handleChange}
-            placeholder="Digite a cor"
+            placeholder="Type the lake name"
           />
         </div>
         <button type="submit">Update</button>
       </form>
       {message && <p>{message}</p>}
-    </div>
+    </section>
   );
 };
 

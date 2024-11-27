@@ -52,7 +52,7 @@ const AddCapybara = () => {
       !formData.address.state ||
       !formData.address.lake_name
     ) {
-      setMessage("Por favor, preencha todos os campos.");
+      setMessage("Please fill all fields.");
       return;
     }
 
@@ -77,7 +77,7 @@ const AddCapybara = () => {
         },
       }); // Limpa o formulário
     } catch (err) {
-      setMessage("Erro ao adicionar a capivara. Tente novamente.");
+      setMessage("Error to try add capybara. Try again.");
     }
   };
 
@@ -92,7 +92,7 @@ const AddCapybara = () => {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            placeholder="Digite o ID"
+            placeholder="Type a capyname"
           />
         </div>
         <div>
@@ -102,7 +102,7 @@ const AddCapybara = () => {
             name="age"
             value={formData.age}
             onChange={handleChange}
-            placeholder="Digite o ID"
+            placeholder="Type a capage"
           />
         </div>
         <div>
@@ -112,7 +112,7 @@ const AddCapybara = () => {
             name="weight"
             value={formData.weight}
             onChange={handleChange}
-            placeholder="Digite o nome"
+            placeholder="Type the capyname"
           />
         </div>
         <div>
@@ -122,7 +122,7 @@ const AddCapybara = () => {
             name="color"
             value={formData.color}
             onChange={handleChange}
-            placeholder="Type the lake name"
+            placeholder="Type the color"
           />
         </div>
         <div>
@@ -132,7 +132,7 @@ const AddCapybara = () => {
             name="curiosity"
             value={formData.curiosity}
             onChange={handleChange}
-            placeholder="Type the lake name"
+            placeholder="Type the capy curiosity"
           />
         </div>
         <div>
@@ -150,7 +150,7 @@ const AddCapybara = () => {
             name="address.city"
             value={formData.address.city}
             onChange={handleChange}
-            placeholder="Type the lake name"
+            placeholder="Type the city"
           />
         </div>
         <div>
@@ -160,7 +160,7 @@ const AddCapybara = () => {
             name="address.state"
             value={formData.address.state}
             onChange={handleChange}
-            placeholder="Type the lake name"
+            placeholder="Type the state"
           />
         </div>
         <div>

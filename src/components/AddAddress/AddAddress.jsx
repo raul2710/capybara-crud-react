@@ -14,7 +14,6 @@ const AddAddress = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value }); // Atualiza os valores do formulário dinamicamente
-    setCapybaraId(e.target.value);
   };
 
   const handleSubmit = async (e) => {
@@ -22,7 +21,7 @@ const AddAddress = () => {
     const { city, state, lake_name } = formData;
 
     if (!city || !state || !lake_name) {
-      setMessage("Por favor, preencha todos os campos.");
+      setMessage("Please fill all fields.");
       return;
     }
 
@@ -35,16 +34,14 @@ const AddAddress = () => {
       const response = await createAddress(capybara_id, newAddress);
       setMessage(response.message);
       setFormData({ city: "", state: "", lake_name: "" }); // Limpa o formulário
-      setCapybaraId(null);
+      setCapybaraId(0);
     } catch (err) {
-      setMessage(
-        "Erro ao adicionar a capivara. Verifique os dados e tente novamente."
-      );
+      setMessage("Error to try add address. Try again.");
     }
   };
 
   return (
-    <div>
+    <section id="sectionAddAddress">
       <h2>Add an Address</h2>
       <p>It's function only for capybaras that don't have address</p>
       <form onSubmit={handleSubmit}>
@@ -54,8 +51,8 @@ const AddAddress = () => {
             type="number"
             name="id"
             value={capybara_id}
-            onChange={handleChange}
-            placeholder="Digite o ID"
+            onChange={(e) => setCapybaraId(e.target.value)}
+            placeholder="Type the capId"
           />
         </div>
         <div>
@@ -65,7 +62,7 @@ const AddAddress = () => {
             name="city"
             value={formData.city}
             onChange={handleChange}
-            placeholder="Digite o ID"
+            placeholder="Type the city"
           />
         </div>
         <div>
@@ -75,7 +72,7 @@ const AddAddress = () => {
             name="state"
             value={formData.state}
             onChange={handleChange}
-            placeholder="Digite o nome"
+            placeholder="Type the state"
           />
         </div>
             <div>
@@ -91,7 +88,7 @@ const AddAddress = () => {
         <button type="submit">Add</button>
       </form>
       {message && <p>{message}</p>}
-    </div>
+    </section>
   );
 };
 

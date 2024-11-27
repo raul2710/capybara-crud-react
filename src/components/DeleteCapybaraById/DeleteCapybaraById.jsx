@@ -7,23 +7,23 @@ const DeleteCapybaraById = () => {
 
     const handleDelete = async () => {
         if (!id) {
-        setMessage('Por favor, insira um ID.');
+        setMessage('Please type a valid Id.');
         return;
         }
 
-        if (window.confirm(`Tem certeza que deseja excluir a capivara com ID ${id}?`)) {
+        if (window.confirm(`Do you want to delete the capybara ${id}?`)) {
         try {
             await deleteCapybara(id); // Chama a função de exclusão
-            setMessage(`Capivara com ID ${id} foi excluída com sucesso.`);
+            setMessage(`Capybara ${id} was delete.`);
             setId(''); // Limpa o campo de ID
         } catch (err) {
-            setMessage(`Erro ao excluir a capivara: ${err.message}`);
+            setMessage(`Error to delete the capybara: ${err.message}`);
         }
         }
     };
 
     return (
-        <div>
+        <section id='sectionDeleteCapybara'>
             <h2>Delete Capybara</h2>
             <label>Capybara Id:</label>
             <input
@@ -34,7 +34,7 @@ const DeleteCapybaraById = () => {
             />
             <button className='delete' onClick={handleDelete}>Delete</button>
             {message && <p>{message}</p>} {/* Exibe mensagens de feedback */}
-        </div>
+        </section>
     );
 };
 

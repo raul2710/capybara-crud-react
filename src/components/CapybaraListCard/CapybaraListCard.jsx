@@ -4,6 +4,7 @@ import api from "../../services/api";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import './CapybaraListCard.css'
 
 const CapybaraListCard = () => {
   const [capybaras, setCapybaras] = useState([]);
@@ -25,37 +26,39 @@ const CapybaraListCard = () => {
     fetchCapybaras();
   }, []); // Executa apenas na montagem do componente
 
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return <p>Error: {error}</p>;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
+    <section id="sectionShowCapybaras">
       <h2>All Capybaras</h2>
-      <Carousel
-        emulateTouch={true}
-        showIndicators={false}
-      >
-        <CapybaraCard />
-        <CapybaraCard />
-        <CapybaraCard />
-        <CapybaraCard />
-        <CapybaraCard />
-      </Carousel>
-    </div>
+      <p>Press F5 to reload and see the new Capybaras</p>
+      <div className="carousel-container">
+        <Carousel
+          emulateTouch={true}
+          showIndicators={false}
+        >
+            {
+              capybaras.map((capybara) => <CapybaraCard
+                name={capybara.name}
+                age={capybara.age}
+                weight={capybara.weight}
+                color={capybara.color}
+                curiosity={capybara.curiosity}
+                classification={capybara.classification} />
+              )
+        
+            // city={capybara.address.city}
+            // state={capybara.address.state}
+            // lake_name={capybara.address.lake_name}
+          }
+        </Carousel>
+      </div>
+    </section>
   );
 };
 
 export default CapybaraListCard;
 
 
-    //         capybaras.map((capybara) => ( 
-    //             name={capybara.name}
-    //             age={capybara.age}
-    //             weight={capybara.weight}
-    //             color={capybara.color}
-    //             curiosity={capybara.curiosity}
-    //             classification={capybara.classification}
 
-    //             // city={capybara.address.city}
-    //             // state={capybara.address.state}
-    //             // lake_name={capybara.address.lake_name}

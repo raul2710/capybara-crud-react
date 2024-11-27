@@ -5,45 +5,45 @@ const DeleteAddressById = () => {
     const [id, setId] = useState(''); // Estado para armazenar o ID
     const [message, setMessage] = useState(''); // Mensagem de feedback para o usuário
 
-    const deleteCapybara = async (id) => {
+    const deleteAddress = async (id) => {
         try {
             await api.delete(`/address/${id}`);
         } catch (error) {
-            console.error('Erro ao deletar a capivara:', error);
+            console.error('Error to delete the address:', error);
             throw error;
         }
     };
 
     const handleDelete = async () => {
         if (!id) {
-        setMessage('Por favor, insira um ID.');
+        setMessage('Please type a valid Id.');
         return;
         }
 
-        if (window.confirm(`Tem certeza que deseja excluir a capivara com ID ${id}?`)) {
+        if (window.confirm(`Do you want to delete the address ${id}?`)) {
         try {
-            await deleteCapybara(id); // Chama a função de exclusão
-            setMessage(`Capivara com ID ${id} foi excluída com sucesso.`);
+            await deleteAddress(id); // Chama a função de exclusão
+            setMessage(`Address ${id} was delete.`);
             setId(''); // Limpa o campo de ID
         } catch (err) {
-            setMessage(`Erro ao excluir a capivara: ${err.message}`);
+            setMessage(`Error delete address: ${err.message}`);
         }
         }
     };
 
     return (
-        <div>
+        <section id='sectionDeleteAddress'>
             <h2>Delete Address</h2>
             <label>Address Id:</label>
             <input
                 type="number"
-                placeholder="Digite o ID"
+                placeholder="Type a valid Id"
                 value={id}
                 onChange={(e) => setId(e.target.value)} // Atualiza o estado com o valor do input
             />
             <button onClick={handleDelete}>Delete</button>
             {message && <p>{message}</p>} {/* Exibe mensagens de feedback */}
-        </div>
+        </section>
     );
 };
 

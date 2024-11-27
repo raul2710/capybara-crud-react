@@ -27,28 +27,21 @@ const AddressList = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
+    <section id="sectionShowAddresses">
       <h2>All Addresses</h2>
+      <p>Press F5 to reload and see the new Address</p>
       <Carousel emulateTouch={true} showIndicators={false}>
-        <AddressCard />
-        <AddressCard />
-        <AddressCard />
-        <AddressCard />
-        <AddressCard />
+        {addresses.map((address) => (
+          <AddressCard
+            id={address.id}
+            city={address.city}
+            state={address.state}
+            lake_name={address.lake_name}
+            capybara_id={address.capybara_id}
+          />
+        ))}
       </Carousel>
-    </div>
-    // <div className='carousel'>
-    // <h2>All Addresses</h2>
-    //     {addresses.map((address) => (
-    //         <AddressCard
-    //             id={address.id}
-    //             city={address.city}
-    //             state={address.state}
-    //             lake_name={address.lake_name}
-    //             capybara_id={address.capybara_id}
-    //         />
-    //     ))}
-    // </div>
+    </section>
   );
 };
 

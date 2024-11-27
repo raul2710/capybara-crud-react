@@ -25,7 +25,7 @@ const CapybaraSearchById = () => {
   };
 
   return (
-    <div>
+    <section id="sectionSearchCapybara">
       <h2>Search Capybara</h2>
       <div>
         <label>Capybara Id:</label>
@@ -53,7 +53,7 @@ const CapybaraSearchById = () => {
           />
         </div>
       )}
-    </div>
+    </section>
   );
 };
 
